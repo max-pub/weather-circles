@@ -1,25 +1,17 @@
-<!doctype html>
-<html>
+<title>Weather Dot Demo</title>
 
-<head>
+<link href='../../style/base.css' rel='stylesheet' type='text/css'>
+<link href='../../style/icon-list.css' rel='stylesheet' type='text/css'>
+<link href='../../style/font/source.code.300.css' rel='stylesheet' type='text/css'>
 
-    <title>Weather Dot Demo</title>
+<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../../polymer/polymer.html">
 
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+<link rel="import" href="demo.cities.html">
+<link rel="import" href="../weather-dot.html">
+<link rel="import" href="../weather-dots-7-1.html">
+<link rel="import" href="../weather-dots-24-7.html">
 
-    <!--    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,500' rel='stylesheet' type='text/css'>-->
-    <link href='//lib.max.pub/style/font.source.min.css' rel='stylesheet' type='text/css'>
-    <link href='//lib.max.pub/style/base.min.css' rel='stylesheet' type='text/css'>
-
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../../polymer/polymer.html">
-
-    <link rel="import" href="demo.cities.html">
-    <link rel="import" href="../weather-dot.html">
-    <link rel="import" href="../weather-dots-7-1.html">
-    <link rel="import" href="../weather-dots-24-7.html">
-
-</head>
 
 <body>
     <dom-module id='demo-tag'>
@@ -37,24 +29,9 @@
                 height: 100px;
             }
 
-            .dotDemo h3 {
+            .dotDemo h4 {
                 margin: 0;
-                font-weight: 600;
-            }
-
-            .github {
-                font-size: 24px;
-                display: block;
-                color: black;
-                margin: 5px;
-            }
-
-            .github img {
-                width: 32px;
-            }
-
-            .github span {
-                vertical-align: top;
+                /*                font-weight: 600;*/
             }
         </style>
 
@@ -62,54 +39,56 @@
             <article>
                 <h1>Weather Dot Demo</h1>
                 <p>
-                    New way to visualize weather-data.
+                    Novel way to visualize weather-data.
                     <br/> Each circle or <i>dot</i> represents the weather-conditions at a given time (now, day, hour,...)
-                    <a class='github' href="https://github.com/max-pub/weather-dots"><img src='//max.pub/contact/bin/github.png' /><span>GitHub Source</span></a>
+                    <br/>
+                    <br/>
+                    <a href="https://github.com/max-pub/weather-dots"><img src="demo/github.source.docs.png" /></a>
                 </p>
 
                 <br/>
                 <br/>
-                <h2>Load Live Data</h2>
-                <demo-cities days="{{days}}" hours="{{hours}}"></demo-cities>
-
-                <br/>
-                <br/>
-                <h2>Week (hourly)</h2>
+                <h3>Week (hourly)</h3>
                 <weather-dots-24-7 data="{{hours}}"></weather-dots-24-7>
 
                 <br/>
                 <br/>
-                <h2>Week (daily)</h2>
+                <h3>Week (daily)</h3>
                 <weather-dots-7-1 data="{{days}}"></weather-dots-7-1>
 
                 <br/>
                 <br/>
-                <h2>Single Dots explained</h2>
+                <h3>Load Live Data</h3>
+                <demo-cities days="{{days}}" hours="{{hours}}"></demo-cities>
+
+                <br/>
+                <br/>
+                <h3>Single Dots explained</h3>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot1}}'></weather-dot>
-                    <h3>Temperature</h3>
+                    <h4>Temperature</h4>
                     <b>{{dot1.temperature.real}}</b> <i>&deg;C</i>
                 </div>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot2}}'></weather-dot>
-                    <h3>Clouds</h3>
+                    <h4>Clouds</h4>
                     <b>{{percent(dot2.cloudCover)}}</b> <i>%</i>
                 </div>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot3}}'></weather-dot>
-                    <h3>Rain</h3>
+                    <h4>Rain</h4>
                     <b>{{percent(dot3.precipitation.probability)}}</b> <i>%</i>
                 </div>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot4}}'></weather-dot>
-                    <h3>Wind</h3>
+                    <h4>Wind</h4>
                     <b>{{dot4.wind.speed}}</b> <i>m/s</i>
                     <br/>
                     <b>{{dot4.wind.bearing}}</b> <i>&deg;</i>
                 </div>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot5}}'></weather-dot>
-                    <h3>Moon</h3>
+                    <h4>Moon</h4>
                     <b>{{percent(dot5.moon.visible)}}</b> <i>%</i>
                 </div>
 
@@ -183,5 +162,3 @@
     <demo-tag></demo-tag>
 
 </body>
-
-</html>

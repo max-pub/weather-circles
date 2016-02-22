@@ -67,8 +67,8 @@
             <template is="dom-repeat" items="{{data}}" as='day'>
                 <tr class='weather-day'>
                     <td class='date-time month'>
-                        <date-format class='monthNumber' time="{{date(day)}}" format="DD"></date-format>
-                        <date-format class='monthName' time="{{date(day)}}" format="MMM"></date-format>
+                        <date-format class='monthNumber' date="{{date(day)}}" format="DD"></date-format>
+                        <date-format class='monthName' date="{{date(day)}}" format="MMM"></date-format>
                     </td>
                     <template is="dom-repeat" items="{{day}}" as='hour'>
                         <td class='weather-hour'>
@@ -76,7 +76,7 @@
                         </td>
                     </template>
                     <td class='date-time day'>
-                        <date-format class='dayName' time="{{date(day)}}" format="DDD"></date-format>
+                        <date-format class='dayName' date="{{date(day)}}" format="DDD"></date-format>
                     </td>
                 </tr>
             </template>

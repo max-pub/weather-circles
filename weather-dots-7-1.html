@@ -34,8 +34,8 @@
                 <tr class='day-labels'>
                     <template is="dom-repeat" items="{{data}}" as='day'>
                         <td>
-                            <date-format class='monthName' time="{{day.date}}" format="MMM"></date-format>
-                            <date-format class='dayNumber' time="{{day.date}}" format="DD"></date-format>
+                            <date-format class='monthName' date="{{day.date}}" format="MMM"></date-format>
+                            <date-format class='dayNumber' date="{{day.date}}" format="DD"></date-format>
                         </td>
                     </template>
                 </tr>
