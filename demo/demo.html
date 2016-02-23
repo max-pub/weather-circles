@@ -1,4 +1,4 @@
-<title>Weather Dot Demo</title>
+<title>Weather Dots</title>
 
 <link href='../../style/base.css' rel='stylesheet' type='text/css'>
 <link href='../../style/icon-list.css' rel='stylesheet' type='text/css'>
@@ -29,21 +29,21 @@
                 height: 100px;
             }
 
-            .dotDemo h4 {
+            .dotDemo h5 {
                 margin: 0;
-                /*                font-weight: 600;*/
+                font-weight: bold;
             }
         </style>
 
         <template>
             <article>
-                <h1>Weather Dot Demo</h1>
+                <h1>Weather Dots</h1>
                 <p>
                     Novel way to visualize weather-data.
                     <br/> Each circle or <i>dot</i> represents the weather-conditions at a given time (now, day, hour,...)
                     <br/>
                     <br/>
-                    <a href="https://github.com/max-pub/weather-dots"><img src="demo/github.source.docs.png" /></a>
+                    <a href="https://github.com/max-pub/weather-dots"><img src="../github.source.docs.png" /></a>
                 </p>
 
                 <br/>
@@ -66,29 +66,29 @@
                 <h3>Single Dots explained</h3>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot1}}'></weather-dot>
-                    <h4>Temperature</h4>
+                    <h5>Temperature</h5>
                     <b>{{dot1.temperature.real}}</b> <i>&deg;C</i>
                 </div>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot2}}'></weather-dot>
-                    <h4>Clouds</h4>
+                    <h5>Clouds</h5>
                     <b>{{percent(dot2.cloudCover)}}</b> <i>%</i>
                 </div>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot3}}'></weather-dot>
-                    <h4>Rain</h4>
+                    <h5>Rain</h5>
                     <b>{{percent(dot3.precipitation.probability)}}</b> <i>%</i>
                 </div>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot4}}'></weather-dot>
-                    <h4>Wind</h4>
+                    <h5>Wind</h5>
                     <b>{{dot4.wind.speed}}</b> <i>m/s</i>
                     <br/>
                     <b>{{dot4.wind.bearing}}</b> <i>&deg;</i>
                 </div>
                 <div class='dotDemo'>
                     <weather-dot data='{{dot5}}'></weather-dot>
-                    <h4>Moon</h4>
+                    <h5>Moon</h5>
                     <b>{{percent(dot5.moon.visible)}}</b> <i>%</i>
                 </div>
 
