@@ -92,6 +92,13 @@
                     <b>{{percent(dot5.moon.visible)}}</b> <i>%</i>
                 </div>
 
+                <div class='dotDemo'>
+                    <weather-dot data='{{dot6}}'></weather-dot>
+                    <h5>Sample</h5>
+                    40% Clouds <br/>
+                    30% Rain
+                </div>
+
             </article>
 
         </template>
@@ -107,9 +114,12 @@
                 this.set('dot3', JSON.parse(JSON.stringify(baseDot)));
                 this.set('dot4', JSON.parse(JSON.stringify(baseDot)));
                 this.set('dot5', JSON.parse(JSON.stringify(baseDot)));
+                this.set('dot6', JSON.parse(JSON.stringify(baseDot)));
 
                 this.set('dot1.temperature.max', true);
                 this.set('dot5.light', 0);
+                this.set('dot6.cloudCover', 0.4);
+                this.set('dot6.precipitation.probability', 0.3);
                 this.repeat();
             },
             repeat: function () {

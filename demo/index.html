@@ -10382,43 +10382,21 @@ this.fire('dom-change');
             bottom: 0;
             left: 0;
             background: transparent;
-            /*line-height: 70%;*/
+            line-height: 70%;
             text-align: left;
-            /*margin-top: 2px;*/
-            padding-top:11%;
+            margin-top: 2px;
         }
 
-        .dot .rain .rainRow{
-            /*border: 1px solid red;*/
-            height: 30%;
-            white-space: nowrap;
-            font-size: 7px;
-        }
         .dot .rain .drop {
             display: inline-block;
-            width: 10px;
+            width: 17%;
             margin: 0;
             padding: 0;
-            /*margin-right: 1%;*/
-            /*margin-top: 3%;*/
-        }
-        .dot .rain .raindrop {
-            display: inline-block;
-            /*width: 10px;*/
-            /*padding:4px;*/
-            background: #0a4291;
-            margin: 0;
-            padding: 0;
-            /*width: 20vw;*/
-            /*height: 20vw;*/
-            /*width: 7px;*/
-            /*height: 7px;*/
-            -webkit-border-radius:100px;
-            /*margin-right: 1%;*/
-            /*margin-top: 3%;*/
+            margin-right: 1%;
+            margin-top: 3%;
         }
 
-/*        .dot .rain .drop:nth-child(1) {
+        .dot .rain .drop:nth-child(1) {
             margin-left: 20%;
         }
 
@@ -10429,7 +10407,7 @@ this.fire('dom-change');
         .dot .rain .drop:nth-child(8) {
             margin-left: 20%;
         }
-*/
+
         .minTemp .rain,
         .maxTemp .rain {
             display: none;
@@ -10493,23 +10471,22 @@ this.fire('dom-change');
 
                 <template is="dom-if" if="{{!MinMaxTemp(data)}}">
                     <span class="clouds" style$="bottom:{{cloudCurtain(data.cloudCover)}}%;"></span>
-                    <span class="rain" style="opacity: 0.7;">
-                        <center class="rainRow">
+                    <span class="rain" style="opacity: 0.5;">
+                        <div>
                             <template is="dom-repeat" items="{{raindropsRow(data.precipitation.probability,1)}}">
-                                <span class="raindrop" style$="width:[[raindropSize()]]px; height:[[raindropSize()]]px; "></span>
+                                <img src$="bin/{{data.precipitation.type}}.png" class="drop">
                             </template>
-                        </center>
-                        <center class="rainRow">
+                        </div>
+                        <div>
                             <template is="dom-repeat" items="{{raindropsRow(data.precipitation.probability,2)}}">
-                                <span class="raindrop" style$="width:[[raindropSize()]]px; height:[[raindropSize()]]px; "></span>
-                                <!-- <img src$='bin/{{data.precipitation.type}}.png' class='drop'> -->
+                                <img src$="bin/{{data.precipitation.type}}.png" class="drop">
                             </template>
-                        </center>
-                        <center class="rainRow">
+                        </div>
+                        <div>
                             <template is="dom-repeat" items="{{raindropsRow(data.precipitation.probability,3)}}">
-                                <span class="raindrop" style$="width:[[raindropSize()]]px; height:[[raindropSize()]]px; "></span>
+                                <img src$="bin/{{data.precipitation.type}}.png" class="drop">
                             </template>
-                        </center>
+                        </div>
                     </span>
                     <img class="wind" src="bin/{{windIcon}}.png" style$="margin-top:{{windMargin(data.wind.speed)}}%; width:{{windSize(data.wind.speed)}}%; -webkit-transform:rotate({{data.wind.bearing}}deg)">
                 </template>
@@ -10599,9 +10576,6 @@ this.fire('dom-change');
             if(drops<1) return [];
             if(row===3) return drops > 3 ? new Array(3) : new Array(drops);
         },
-        raindropSize: function(){
-            return Math.round(this.offsetHeight/5);
-        },
         windSize: function (value) {
             //            console.log('--------size', item.wind.speed)
             return Math.round(value * 3.6); // == transform from m/s to km/h... heavy storm = 100km/h... good fit!
@@ -10626,7 +10600,6 @@ this.fire('dom-change');
             return Math.round(value);
         },
         dataChanged: function () {
-            CCC = this;
             //            console.log('dot-data', this.data);
             DAT = this.data;
             //            left:{{data.sunLeft}}px; right:{{data.sunRight}}px;
@@ -10940,13 +10913,6 @@ this.fire('dom-change');
                     <b>{{percent(dot5.moon.visible)}}</b> <i>%</i>
                 </div>
 
-                <div class="dotDemo">
-                    <weather-dot data="{{dot6}}"></weather-dot>
-                    <h5>Sample</h5>
-                    40% Clouds <br>
-                    30% Rain
-                </div>
-
             </article>
 
         </template>
@@ -10962,12 +10928,9 @@ this.fire('dom-change');
                 this.set('dot3', JSON.parse(JSON.stringify(baseDot)));
                 this.set('dot4', JSON.parse(JSON.stringify(baseDot)));
                 this.set('dot5', JSON.parse(JSON.stringify(baseDot)));
-                this.set('dot6', JSON.parse(JSON.stringify(baseDot)));
 
                 this.set('dot1.temperature.max', true);
                 this.set('dot5.light', 0);
-                this.set('dot6.cloudCover', 0.4);
-                this.set('dot6.precipitation.probability', 0.3);
                 this.repeat();
             },
             repeat: function () {

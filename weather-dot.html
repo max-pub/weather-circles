@@ -70,21 +70,43 @@
             bottom: 0;
             left: 0;
             background: transparent;
-            line-height: 70%;
+            /*line-height: 70%;*/
             text-align: left;
-            margin-top: 2px;
+            /*margin-top: 2px;*/
+            padding-top:11%;
         }
 
+        .dot .rain .rainRow{
+            /*border: 1px solid red;*/
+            height: 30%;
+            white-space: nowrap;
+            font-size: 7px;
+        }
         .dot .rain .drop {
             display: inline-block;
-            width: 17%;
+            width: 10px;
             margin: 0;
             padding: 0;
-            margin-right: 1%;
-            margin-top: 3%;
+            /*margin-right: 1%;*/
+            /*margin-top: 3%;*/
+        }
+        .dot .rain .raindrop {
+            display: inline-block;
+            /*width: 10px;*/
+            /*padding:4px;*/
+            background: #0a4291;
+            margin: 0;
+            padding: 0;
+            /*width: 20vw;*/
+            /*height: 20vw;*/
+            /*width: 7px;*/
+            /*height: 7px;*/
+            -webkit-border-radius:100px;
+            /*margin-right: 1%;*/
+            /*margin-top: 3%;*/
         }
 
-        .dot .rain .drop:nth-child(1) {
+/*        .dot .rain .drop:nth-child(1) {
             margin-left: 20%;
         }
 
@@ -95,7 +117,7 @@
         .dot .rain .drop:nth-child(8) {
             margin-left: 20%;
         }
-
+*/
         .minTemp .rain,
         .maxTemp .rain {
             display: none;
@@ -160,10 +182,23 @@
 
                 <template is="dom-if" if="{{!MinMaxTemp(data)}}">
                     <span class='clouds' style$="bottom:{{cloudCurtain(data.cloudCover)}}%;"></span>
-                    <span class='rain' style='opacity: 0.5;'>
-                        <template is="dom-repeat" items="{{raindrops(data.precipitation.probability)}}">
-                            <img src$='bin/{{data.precipitation.type}}.png' class='drop'>
-                        </template>
+                    <span class='rain' style='opacity: 0.7;'>
+                        <center class='rainRow'>
+                            <template is="dom-repeat" items="{{raindropsRow(data.precipitation.probability,1)}}">
+                                <span class='raindrop' style$='width:[[raindropSize()]]px; height:[[raindropSize()]]px; '></span>
+                            </template>
+                        </center>
+                        <center class='rainRow'>
+                            <template is="dom-repeat" items="{{raindropsRow(data.precipitation.probability,2)}}">
+                                <span class='raindrop' style$='width:[[raindropSize()]]px; height:[[raindropSize()]]px; '></span>
+                                <!-- <img src$='bin/{{data.precipitation.type}}.png' class='drop'> -->
+                            </template>
+                        </center>
+                        <center class='rainRow'>
+                            <template is="dom-repeat" items="{{raindropsRow(data.precipitation.probability,3)}}">
+                                <span class='raindrop' style$='width:[[raindropSize()]]px; height:[[raindropSize()]]px; '></span>
+                            </template>
+                        </center>
                     </span>
                     <img class='wind' src='bin/{{windIcon}}.png' style$='margin-top:{{windMargin(data.wind.speed)}}%; width:{{windSize(data.wind.speed)}}%; -webkit-transform:rotate({{data.wind.bearing}}deg)' />
                 </template>
@@ -241,7 +276,20 @@
         },
         raindrops: function (value) {
             //            console.log('raindrops', Math.round(item.precipitation.probability * 100 / 10));
-            return new Array(Math.round(value * 100 / 10));
+            return Math.round(value * 100 / 10);
+        },
+        raindropsRow: function(value, row){
+            var drops = this.raindrops(value);
+            if(row===1) return drops > 3 ? new Array(3) : new Array(drops);
+            drops -= 3;
+            if(drops<1) return [];
+            if(row===2) return drops > 4 ? new Array(4) : new Array(drops);
+            drops -= 4;
+            if(drops<1) return [];
+            if(row===3) return drops > 3 ? new Array(3) : new Array(drops);
+        },
+        raindropSize: function(){
+            return Math.round(this.offsetHeight/5);
         },
         windSize: function (value) {
             //            console.log('--------size', item.wind.speed)
@@ -267,6 +315,7 @@
             return Math.round(value);
         },
         dataChanged: function () {
+            CCC = this;
             //            console.log('dot-data', this.data);
             DAT = this.data;
             //            left:{{data.sunLeft}}px; right:{{data.sunRight}}px;
